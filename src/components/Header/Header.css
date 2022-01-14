@@ -1,9 +1,9 @@
 .header {
-  width: 40%;
-  padding: 42px;
-  min-height: 110px;
+  width: 98rem;
+  padding: 4.2rem;
+  min-height: 11rem;
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-bottom: 5rem;
   border: 3px #4f5d79 solid;
   border-radius: 1rem;
   display: flex;
@@ -12,16 +12,16 @@
 }
 
 .logo {
-  width: 162px;
-  height: 99px;
+  width: 16.2rem;
+  height: 9.9rem;
 }
 
 .score {
-  width: 180px;
-  padding-top: 24px;
-  padding-bottom: 18px;
+  width: 18rem;
+  padding-top: 2.4rem;
+  padding-bottom: 1.8rem;
   background-color: #f9f9f9;
-  border-radius: 12px;
+  border-radius: 1.2rem;
 
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
 .score-title {
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: #3141b2;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -42,8 +42,8 @@
   color: #5a566d;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
-  font-size: 70px;
-  line-height: 70px;
-  letter-spacing: -7px;
-  margin-left: -10px;
+  font-size: 7rem;
+  line-height: 7rem;
+  letter-spacing: -0.7rem;
+  margin-left: -1rem;
 }
