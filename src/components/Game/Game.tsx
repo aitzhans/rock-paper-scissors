@@ -1,31 +1,14 @@
 import React, { useState } from 'react';
+import gsap from 'gsap';
 
 import { Variant } from './Variant';
+import { VARS } from '../utils/constants';
+import { isWin } from '../utils/utils';
 
 import './Game.css';
 
-const VARS = {
-  PAPER: 'paper',
-  SCISSORS: 'scissors',
-  ROCK: 'rock',
-};
-
-const YOU_WIN_IF = [
-  `${VARS.PAPER} + ${VARS.ROCK}`,
-  `${VARS.ROCK} + ${VARS.SCISSORS}`,
-  `${VARS.SCISSORS} + ${VARS.PAPER}`,
-];
-
 type GameProps = {
   handleFinishGame: (n: number) => void;
-};
-
-const isWin = (yourChoice: string, housePicked: string): number => {
-  if (yourChoice === housePicked) {
-    return 0;
-  }
-  const choicesPair = `${yourChoice} + ${housePicked}`;
-  return YOU_WIN_IF.includes(choicesPair) ? 1 : -1;
 };
 
 export const Game = ({ handleFinishGame }: GameProps) => {
@@ -36,21 +19,40 @@ export const Game = ({ handleFinishGame }: GameProps) => {
   const allVars = Object.values(VARS);
 
   const handleStartGame = (selectedVar: string) => {
-    // setStarted(true);
     setSelected(selectedVar);
-    const triangleBg = document.querySelector('.game-your-choice')!;
-    triangleBg.classList.add('game-your-choice--selected');
-    const item = allVars[Math.floor(Math.random() * allVars.length)];
-    setHousePicked(item);
-    const newScore = isWin(selectedVar, item);
+    const computersVar = allVars[Math.floor(Math.random() * allVars.length)];
+    setHousePicked(computersVar);
+    const newScore = isWin(selectedVar, computersVar);
     handleFinishGame(newScore);
+
+    const allVarDivs = document.querySelectorAll('.game-your-choice .variant');
+    allVarDivs.forEach((item) => {
+      if (item.getAttribute('data-name') === selectedVar) {
+        gsap.to(item, {
+          rotation: '360',
+          scale: 1.2,
+          opacity: 1,
+          top: '6rem',
+          left: 0,
+          margin: 0,
+        });
+      } else {
+        gsap.to(item, { rotation: '360', scale: 0.5, opacity: 0 });
+      }
+    });
+    const triangleBg = document.querySelector('.game-triangle')!;
+    gsap.to(triangleBg, { opacity: 0 });
+    const gameSubtitle = document.querySelector('.game-subtitle');
+    gsap.to(gameSubtitle, { opacity: 1 });
+    const computersVarDiv = document.querySelector('.variant--house-picked');
+    gsap.to(computersVarDiv, { rotation: '360', scale: 1.2, opacity: 1 });
   };
 
   const handlePlayAgain = (): void => {
-    // setStarted(false);
-    setSelected(null);
-    const triangleBg = document.querySelector('.game-your-choice')!;
-    triangleBg.classList.remove('game-your-choice--selected');
+    console.log('play again');
+    // setSelected(null);
+    // const triangleBg = document.querySelector('.game-your-choice')!;
+    // triangleBg.classList.remove('game-your-choice--selected');
   };
 
   return (
@@ -59,30 +61,35 @@ export const Game = ({ handleFinishGame }: GameProps) => {
         Play again
       </button>
       <div className="game">
-        {selected && (
-          <div className="game-subtitle">
-            <p>Your choice</p>
-            <p>The house picked</p>
-          </div>
-        )}
+        {/* {selected && ( */}
+        <div className="game-subtitle">
+          <p>Your choice</p>
+          <p>The house picked</p>
+        </div>
+        {/* )} */}
         <div className="game-field">
           <div className="game-your-choice">
+            <div className="game-triangle"></div>
+            {/* можно потом в map завернуть, чтобы 3 раза не писать */}
             <Variant
               name={VARS.PAPER}
               handleClick={handleStartGame}
-              isVisible={selected === null || selected === VARS.PAPER}
+              // isVisible={selected === null || selected === VARS.PAPER}
+              isVisible={true}
               isSelected={selected === VARS.PAPER}
             />
             <Variant
               name={VARS.SCISSORS}
               handleClick={handleStartGame}
-              isVisible={selected === null || selected === VARS.SCISSORS}
+              // isVisible={selected === null || selected === VARS.SCISSORS}
+              isVisible={true}
               isSelected={selected === VARS.SCISSORS}
             />
             <Variant
               name={VARS.ROCK}
               handleClick={handleStartGame}
-              isVisible={selected === null || selected === VARS.ROCK}
+              // isVisible={selected === null || selected === VARS.ROCK}
+              isVisible={true}
               isSelected={selected === VARS.ROCK}
             />
           </div>
@@ -90,7 +97,8 @@ export const Game = ({ handleFinishGame }: GameProps) => {
             <Variant
               name={housePicked || ''}
               handleClick={handleStartGame}
-              isVisible={selected !== null}
+              // isVisible={selected !== null}
+              isVisible={true}
               isSelected={false}
               isInHouse={true}
             />
