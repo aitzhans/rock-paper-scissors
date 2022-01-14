@@ -1,0 +1,48 @@
+.game {
+  width: 650px;
+  height: 580px;
+  padding: 42px;
+  min-height: 110px;
+  margin: 0 auto;
+  /* border: 3px #4f5d79 solid; */
+  background-image: url('./bg-triangle.svg');
+  background-repeat: no-repeat;
+  background-size: 440px 400px;
+  background-position: center center;
+
+  position: relative;
+}
+
+.variant {
+  position: absolute;
+  width: 216px;
+  height: 216px;
+  background-color: #e3e3e3;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.variant--paper {
+  top: 0;
+  left: 0;
+  border: 33px #5472ee solid;
+  box-shadow: 0 12px #2845bf, inset 0 10px #bbc0d6;
+}
+
+.variant--scissors {
+  top: 0;
+  right: 0;
+  border: 33px #eca823 solid;
+  box-shadow: 0 12px #cb6d1a, inset 0 10px #bbc0d6;
+}
+
+.variant--rock {
+  bottom: 0;
+  left: 50%;
+  margin-left: -141px;
+  border: 33px #e0425f solid;
+  box-shadow: 0 12px #981736, inset 0 10px #bbc0d6;
+}
+
+.game-btn {
+}
