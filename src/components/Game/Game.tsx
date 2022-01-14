@@ -10,10 +10,22 @@ const VARS = {
   ROCK: 'rock',
 };
 
+const YOU_WIN_IF = [
+  `${VARS.PAPER} + ${VARS.ROCK}`,
+  `${VARS.ROCK} + ${VARS.SCISSORS}`,
+  `${VARS.SCISSORS} + ${VARS.PAPER}`,
+];
+
 type GameProps = {
-  // setStarted: () => void;
   handleFinishGame: (n: number) => void;
-  // started: boolean;
+};
+
+const isWin = (yourChoice: string, housePicked: string): number => {
+  if (yourChoice === housePicked) {
+    return 0;
+  }
+  const choicesPair = `${yourChoice} + ${housePicked}`;
+  return YOU_WIN_IF.includes(choicesPair) ? 1 : -1;
 };
 
 export const Game = ({ handleFinishGame }: GameProps) => {
@@ -30,6 +42,8 @@ export const Game = ({ handleFinishGame }: GameProps) => {
     triangleBg.classList.add('game-your-choice--selected');
     const item = allVars[Math.floor(Math.random() * allVars.length)];
     setHousePicked(item);
+    const newScore = isWin(selectedVar, item);
+    handleFinishGame(newScore);
   };
 
   const handlePlayAgain = (): void => {

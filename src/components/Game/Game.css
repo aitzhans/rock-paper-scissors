@@ -3,7 +3,7 @@
   height: 58rem;
   margin: 0 auto;
   position: relative;
-  outline: 1px yellow solid;
+  /* outline: 1px yellow solid; */
 }
 
 .game-subtitle {
@@ -14,7 +14,7 @@
   margin: 0 auto;
   margin-bottom: 1rem;
 
-  outline: 1px red solid;
+  /* outline: 1px red solid; */
 }
 
 .game-subtitle p {
@@ -26,14 +26,14 @@
   color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
-  outline: 1px red solid;
+  /* outline: 1px red solid; */
 }
 
 .game-field {
   position: relative;
   width: 90%;
   margin: 0 auto;
-  outline: 1px yellow solid;
+  /* outline: 1px yellow solid; */
 }
 
 .game-your-choice {
@@ -42,7 +42,7 @@
   width: 70rem;
   height: 50rem;
   /* padding: 4.2rem; */
-  outline: 1px red solid;
+  /* outline: 1px red solid; */
 }
 .game-your-choice::before {
   position: absolute;
@@ -79,7 +79,7 @@
   top: 0;
   right: 0;
   pointer-events: none;
-  outline: 1px green solid;
+  /* outline: 1px green solid; */
 }
 
 .variant {
@@ -89,6 +89,9 @@
   background-color: #e3e3e3;
   border-radius: 50%;
   cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+  background-position: center center;
 }
 
 .variant--paper {
@@ -96,6 +99,7 @@
   left: 0;
   border: 3.3rem #5472ee solid;
   box-shadow: 0 12px #2845bf, inset 0 1rem #bbc0d6;
+  background-image: url('./icon-paper.svg');
 }
 
 .variant--scissors {
@@ -103,6 +107,7 @@
   right: 0;
   border: 3.3rem #eca823 solid;
   box-shadow: 0 12px #cb6d1a, inset 0 1rem #bbc0d6;
+  background-image: url('./icon-scissors.svg');
 }
 
 .variant--rock {
@@ -111,6 +116,7 @@
   margin-left: -141px;
   border: 3.3rem #e0425f solid;
   box-shadow: 0 12px #981736, inset 0 1rem #bbc0d6;
+  background-image: url('./icon-rock.svg');
 }
 
 .variant--selected {

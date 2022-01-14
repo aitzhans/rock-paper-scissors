@@ -9,7 +9,7 @@ function App() {
   const [score, setScore] = useState(0);
 
   const handleFinishGame = (num: number): void => {
-    setScore(num);
+    setScore(score + num);
   };
 
   return (
