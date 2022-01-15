@@ -97,6 +97,45 @@ export const Game = ({ handleFinishGame }: GameProps) => {
 
     setTimeout(() => {
       handleFinishGame(newScore - 1);
+      let wins = document.querySelector('.variant-wins--house-picked');
+      if (newScore === 0) {
+        wins = document.querySelector('.variant-wins--house-picked');
+        gsap.to(wins, { opacity: 1, delay: 0, duration: 0 });
+        gsap.to(wins, {
+          width: '100rem',
+          height: '100rem',
+          top: '-30.4rem',
+          right: '-36.4rem',
+          delay: 0.1,
+          duration: 0.4,
+        });
+        gsap.to(wins, {
+          opacity: 0,
+          delay: 0.4,
+          duration: 0.4,
+        });
+      } else if (newScore === 2) {
+        wins = document.querySelector(`.variant-wins--${selectedVar}`);
+        gsap.to(wins, { opacity: 1, delay: 0, duration: 0 });
+        gsap.to(wins, {
+          width: '100rem',
+          height: '100rem',
+          top: '-30.4rem',
+          left: '-36.4rem',
+          delay: 0.1,
+          duration: 0.4,
+        });
+        gsap.to(wins, {
+          opacity: 0,
+          delay: 0.4,
+          duration: 0.4,
+        });
+      }
+      if (wins) {
+        setTimeout(() => {
+          gsap.set(wins, { clearProps: 'all' });
+        }, 1000);
+      }
     }, 2500);
   };
 
@@ -126,6 +165,7 @@ export const Game = ({ handleFinishGame }: GameProps) => {
             {allVars.map((item) => {
               return (
                 <Variant
+                  key={item}
                   name={item}
                   handleClick={handleStartGame}
                   isSelected={selected === item}
@@ -135,6 +175,7 @@ export const Game = ({ handleFinishGame }: GameProps) => {
           </div>
           <div className="game-house-picked">
             <Variant
+              key="housePicked"
               name={housePicked || ''}
               handleClick={handleStartGame}
               isSelected={false}

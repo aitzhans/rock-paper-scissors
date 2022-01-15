@@ -16,10 +16,13 @@ export const Variant = ({
   isInHouse,
 }: VariantProps) => {
   let classes;
+  let winClasses;
   if (isInHouse) {
     classes = `variant  variant--${name}  variant--house-picked`;
+    winClasses = `variant-wins  variant-wins--house-picked`;
   } else {
     classes = `variant  variant--${name}`;
+    winClasses = `variant-wins  variant-wins--${name}`;
   }
 
   const handleVarClick = () => {
@@ -30,6 +33,10 @@ export const Variant = ({
   };
 
   return (
-    <div className={classes} onClick={handleVarClick} data-name={name}></div>
+    <>
+      <div className={winClasses} data-name={name}></div>
+
+      <div className={classes} onClick={handleVarClick} data-name={name}></div>
+    </>
   );
 };
