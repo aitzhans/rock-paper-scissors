@@ -9,3 +9,13 @@ export const YOU_WIN_IF = [
   `${VARS.ROCK} + ${VARS.SCISSORS}`,
   `${VARS.SCISSORS} + ${VARS.PAPER}`,
 ];
+
+export const RESULT_TEXTS: {
+  0: 'YOU LOSE';
+  1: 'DRAWN GAME';
+  2: 'YOU WIN';
+} = {
+  0: 'YOU LOSE',
+  1: 'DRAWN GAME',
+  2: 'YOU WIN',
+};
