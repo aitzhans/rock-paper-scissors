@@ -5,3 +5,6 @@ This is a solution to the [Rock, Paper, Scissors challenge on Frontend Mentor](h
 ### Built with
 
 - [React](https://reactjs.org/) and typescript
+- [GSAP](https://greensock.com/)
+
+### Deploy link is [here](https://aitzhans.github.io/rock-paper-scissors)
