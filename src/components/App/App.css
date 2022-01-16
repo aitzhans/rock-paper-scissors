@@ -41,6 +41,10 @@ body {
   background-size: cover;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -51,10 +55,40 @@ img {
   min-height: 100vh;
   overflow: hidden;
   text-align: center;
+  /* background: red; */
 
   color: white;
   font-family: 'Roboto Condensed', sans-serif;
 
   padding-top: 2.5rem;
   padding-bottom: 7rem;
+  position: relative;
+}
+
+.rules-btn {
+  position: absolute;
+  right: 4rem;
+  bottom: 2rem;
+
+  outline: none;
+  border: 0;
+  cursor: pointer;
+
+  padding: 1.4rem 8rem;
+  border-radius: 0.8rem;
+  background: none;
+  border: #fafafa solid 2px;
+
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  color: #fafafa;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.rules-btn:hover {
+  background-color: #dadada;
+  color: rgba(30, 53, 85, 1);
 }

@@ -99,9 +99,10 @@ export const Game = ({ handleFinishGame }: GameProps) => {
         })
         .to(playAgainBtn, {
           opacity: 1,
+          scale: 1,
           pointerEvents: 'initial',
           delay: 0.17,
-          duration: 0.1,
+          duration: 0.2,
         });
     }
 
@@ -150,7 +151,6 @@ export const Game = ({ handleFinishGame }: GameProps) => {
   };
 
   const handlePlayAgain = (): void => {
-    console.log('play again');
     setSelected(null);
     setComputerChoice(null);
     gsap.set(allVarDivs, { clearProps: 'all' });
