@@ -1,6 +1,6 @@
 .game {
   width: 80rem;
-  height: 58rem;
+  min-height: 30rem;
   margin: 0 auto;
   position: relative;
   /* outline: 1px yellow solid; */
@@ -60,10 +60,10 @@
   opacity: 1;
 }
 
-.game-house-picked {
+.game-computer-choice {
   position: absolute;
   width: 50%;
-  height: 50rem;
+  height: 35rem;
   /* padding: 4.2rem; */
   top: 0;
   right: 0;
@@ -138,12 +138,12 @@
   opacity: 0;
 }
 
-.variant-wins--house-picked {
+.variant-wins--computer-choice {
   left: initial;
   right: 0;
 }
 
-.variant--house-picked {
+.variant--computer-choice {
   top: initial;
   left: initial;
   right: initial;
@@ -158,8 +158,8 @@
 }
 
 .game-result {
-  width: 40rem;
   pointer-events: none;
+  width: 40rem;
   position: absolute;
   /* outline: 1px greenyellow solid; */
   top: 16rem;
@@ -181,6 +181,7 @@
 }
 
 .game-btn {
+  pointer-events: none;
   outline: none;
   border: 0;
   cursor: pointer;
@@ -196,6 +197,8 @@
   color: #3141b2;
   text-transform: uppercase;
   letter-spacing: 2px;
+
+  opacity: 0;
 }
 
 .game-btn:hover {

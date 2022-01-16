@@ -7,7 +7,9 @@
 
 html {
   max-width: 100%;
-  overflow-x: hidden;
+  /* height: 100vh; */
+  /* overflow-x: hidden; */
+  /* overflow: hidden; */
   padding: 0;
 
   font-size: 62.5%; /* = 1rem = 10px */
@@ -15,7 +17,6 @@ html {
 }
 
 @media (max-width: 1400px) {
-  /* for small desktops */
   html {
     font-size: 50%;
   }
@@ -23,10 +24,10 @@ html {
 
 body {
   overflow-x: hidden;
+  overflow-y: scroll;
   position: relative;
   padding: 0;
   margin: 0;
-  min-height: 100vh;
   background-image: -webkit-radial-gradient(
     top,
     rgba(30, 53, 85, 1),
@@ -37,6 +38,7 @@ body {
     rgba(30, 53, 85, 1),
     rgba(20, 23, 28, 1)
   );
+  background-size: cover;
 }
 
 img {
@@ -46,10 +48,13 @@ img {
 
 .App {
   width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   text-align: center;
 
   color: white;
   font-family: 'Roboto Condensed', sans-serif;
 
   padding-top: 2.5rem;
+  padding-bottom: 7rem;
 }

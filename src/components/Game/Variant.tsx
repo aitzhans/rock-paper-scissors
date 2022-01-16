@@ -6,27 +6,27 @@ type VariantProps = {
   name: string;
   handleClick: (n: string) => void;
   isSelected: boolean;
-  isInHouse?: boolean;
+  computerChoice?: boolean;
 };
 
 export const Variant = ({
   name,
   handleClick,
   isSelected,
-  isInHouse,
+  computerChoice,
 }: VariantProps) => {
   let classes;
   let winClasses;
-  if (isInHouse) {
-    classes = `variant  variant--${name}  variant--house-picked`;
-    winClasses = `variant-wins  variant-wins--house-picked`;
+  if (computerChoice) {
+    classes = `variant  variant--${name}  variant--computer-choice`;
+    winClasses = `variant-wins  variant-wins--computer-choice`;
   } else {
     classes = `variant  variant--${name}`;
     winClasses = `variant-wins  variant-wins--${name}`;
   }
 
   const handleVarClick = () => {
-    if (isSelected || isInHouse) {
+    if (isSelected || computerChoice) {
       return;
     }
     handleClick(name);

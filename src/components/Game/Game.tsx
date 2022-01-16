@@ -14,7 +14,7 @@ type GameProps = {
 
 export const Game = ({ handleFinishGame }: GameProps) => {
   const [selected, setSelected] = useState<string | null>(null);
-  const [housePicked, setHousePicked] = useState<string | null>(null);
+  const [computerChoice, setComputerChoice] = useState<string | null>(null);
   const [resultText, setResultText] = useState<
     'YOU WIN' | 'YOU LOSE' | 'DRAWN GAME'
   >('YOU WIN');
@@ -30,19 +30,21 @@ export const Game = ({ handleFinishGame }: GameProps) => {
   let allVarDivs = document.querySelectorAll('.game-your-choice .variant');
   let triangleBg = document.querySelector('.game-triangle')!;
   let gameSubtitle = document.querySelector('.game-subtitle');
-  let computersVarDiv = document.querySelector('.variant--house-picked');
+  let computersVarDiv = document.querySelector('.variant--computer-choice');
   let gameCont = document.querySelector('.game');
   let gameYourChoiceCont = document.querySelector('.game-your-choice');
   let gameResult = document.querySelector('.game-result');
+  let playAgainBtn = document.querySelector('.game-btn');
 
   useEffect(() => {
     allVarDivs = document.querySelectorAll('.game-your-choice .variant');
     triangleBg = document.querySelector('.game-triangle')!;
     gameSubtitle = document.querySelector('.game-subtitle');
-    computersVarDiv = document.querySelector('.variant--house-picked');
+    computersVarDiv = document.querySelector('.variant--computer-choice');
     gameCont = document.querySelector('.game');
     gameYourChoiceCont = document.querySelector('.game-your-choice');
     gameResult = document.querySelector('.game-result');
+    playAgainBtn = document.querySelector('.game-btn');
   }, [selected]);
 
   gsap.ticker.lagSmoothing(0);
@@ -50,7 +52,7 @@ export const Game = ({ handleFinishGame }: GameProps) => {
   const handleStartGame = (selectedVar: string) => {
     setSelected(selectedVar);
     const computersVar = allVars[Math.floor(Math.random() * allVars.length)];
-    setHousePicked(computersVar);
+    setComputerChoice(computersVar);
     const newScore: 0 | 1 | 2 = isWin(selectedVar, computersVar);
     setResultText(RESULT_TEXTS[newScore]);
 
@@ -83,23 +85,31 @@ export const Game = ({ handleFinishGame }: GameProps) => {
           rotation: '360',
           scale: 1.2,
           opacity: 1,
-          delay: 0.2,
         })
         .to(gameCont, { width: '114rem', delay: 0.5, duration: 0.3 })
         .to(gameSubtitle, { width: '110rem', delay: -0.3, duration: 0.3 })
-        .to(gameYourChoiceCont, { width: '106rem', delay: -0.3, duration: 0.3 })
+        .to(gameYourChoiceCont, {
+          width: '106rem',
+          delay: -0.3,
+          duration: 0.3,
+        })
         .to(gameResult, {
           opacity: 1,
-          pointerEvents: 'initial',
           duration: 0.5,
+        })
+        .to(playAgainBtn, {
+          opacity: 1,
+          pointerEvents: 'initial',
+          delay: 0.17,
+          duration: 0.1,
         });
     }
 
     setTimeout(() => {
       handleFinishGame(newScore - 1);
-      let wins = document.querySelector('.variant-wins--house-picked');
+      let wins = document.querySelector('.variant-wins--computer-choice');
       if (newScore === 0) {
-        wins = document.querySelector('.variant-wins--house-picked');
+        wins = document.querySelector('.variant-wins--computer-choice');
         gsap.to(wins, { opacity: 1, delay: 0, duration: 0 });
         gsap.to(wins, {
           width: '100rem',
@@ -136,13 +146,13 @@ export const Game = ({ handleFinishGame }: GameProps) => {
           gsap.set(wins, { clearProps: 'all' });
         }, 1000);
       }
-    }, 2500);
+    }, 2700);
   };
 
   const handlePlayAgain = (): void => {
     console.log('play again');
     setSelected(null);
-    setHousePicked(null);
+    setComputerChoice(null);
     gsap.set(allVarDivs, { clearProps: 'all' });
     gsap.set(computersVarDiv, { clearProps: 'all' });
     gsap.set(triangleBg, { clearProps: 'all' });
@@ -150,6 +160,7 @@ export const Game = ({ handleFinishGame }: GameProps) => {
     gsap.set(gameCont, { clearProps: 'all' });
     gsap.set(gameYourChoiceCont, { clearProps: 'all' });
     gsap.set(gameResult, { clearProps: 'all' });
+    gsap.set(playAgainBtn, { clearProps: 'all' });
   };
 
   return (
@@ -173,13 +184,13 @@ export const Game = ({ handleFinishGame }: GameProps) => {
               );
             })}
           </div>
-          <div className="game-house-picked">
+          <div className="game-computer-choice">
             <Variant
-              key="housePicked"
-              name={housePicked || ''}
+              key="computerChoice"
+              name={computerChoice || ''}
               handleClick={handleStartGame}
               isSelected={false}
-              isInHouse={true}
+              computerChoice={true}
             />
           </div>
         </div>
